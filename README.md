@@ -2,7 +2,7 @@
 
 This is an AutoHotKey script that translates MIDI messages into keystrokes
  - reads incoming MIDI messages and displays them in a small desktop window
- - sends out a keystroke
+ - sends out a keystroke, dependent on which MIDI message was received
  - the currently open app receives these as if they were typed on the keyboard
  
  This way any MIDI device with its pushbuttons and knobs and sliders can be used as a hardware
