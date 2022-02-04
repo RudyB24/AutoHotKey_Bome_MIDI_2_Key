@@ -15,6 +15,11 @@ This is an AutoHotKey script that translates MIDI messages into keystrokes
  
  Keystrokes can be changed to your liking via the 'if' statements from line 40 onwards.
  
+The videos:
+1: https://www.youtube.com/watch?v=Y3gow1TlL78
+2: https://www.youtube.com/watch?v=D-Wvf4HNBnU
+3: https://www.youtube.com/watch?v=h0IZiYEkvLg
+ 
  I like to mention I didn't program the MIDI tranlation part of this script.
  I found it here: https://github.com/genmce/AHK_Midi2Keypress ... author unknown
  What I added are the X Touch One > DaVinci shortcuts.
