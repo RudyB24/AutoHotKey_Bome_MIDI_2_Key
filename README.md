@@ -11,7 +11,7 @@ This is an AutoHotKey script that translates MIDI messages into keystrokes
  This particular AHK script contains shortcuts to operate the DaVinci Resolve
  video editor with the Behringer X Touch One.
  
- Also inluded is a Bome MIDI Translator configuration file in case you prefer to use the Bome app.
+ Also included is a Bome MIDI Translator configuration file in case you prefer to use the Bome app.
  
  Keystrokes can be changed to your liking via the 'if' statements from line 40 onwards.
  
