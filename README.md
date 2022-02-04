@@ -17,9 +17,9 @@ This is an AutoHotKey script that translates MIDI messages into keystrokes
  
 The videos:
 <ol>
- <li>1: https://www.youtube.com/watch?v=Y3gow1TlL78</li>
- <li>2: https://www.youtube.com/watch?v=D-Wvf4HNBnU</li>
- <li>3: https://www.youtube.com/watch?v=h0IZiYEkvLg</li>
+ <li>https://www.youtube.com/watch?v=Y3gow1TlL78</li>
+ <li>https://www.youtube.com/watch?v=D-Wvf4HNBnU</li>
+ <li>https://www.youtube.com/watch?v=h0IZiYEkvLg</li>
 </ol>
  
  I like to mention I didn't program the MIDI tranlation part of this script.
