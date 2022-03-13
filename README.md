@@ -1,4 +1,6 @@
-# AHK_XTouchOne_DaVinciResolve
+# AutoHotKey 2 MIDI
+
+### For instance to be used with Behringer X_Touch_One 2 DaVinciResolve video editor.
 
 This is an AutoHotKey script that translates MIDI messages into keystrokes
  - reads incoming MIDI messages and displays them in a small desktop window
