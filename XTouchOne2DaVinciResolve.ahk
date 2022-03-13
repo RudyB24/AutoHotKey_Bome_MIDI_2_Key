@@ -43,7 +43,7 @@ MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this fun
 ; ADD YOUR OWN INSTRUCTIONS HERE USING: if (data1=... [and/or data2=...) Send ...
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-	if statusbyte between 176 and 191  ;MIDI CC
+if statusbyte between 176 and 191  ; MIDI CC
   {
     stb := "CC" ;The stb variable is used for the MIDI Monitor display
     if (data1=60 and data2=65)
@@ -55,9 +55,9 @@ MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this fun
     if (data1=16 and data2=1)
       Send {Right} ; Pan knob right = Right 1 frame
   }
-	if statusbyte between 144 and 159  ;MIDI NoteOn
+if statusbyte between 144 and 159  ; MIDI NoteOn
   {
-		stb := "NoteOn"
+    stb := "NoteOn"
     if (data1=46 and data2=127) ; Bank Left = Clip In point
       Send i
     if (data1=47 and data2=127) ; Bank Right = Clip Out point
@@ -111,19 +111,20 @@ MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this fun
     if (data1=102 and data2=0)   ; Foot switch Play / Pause
       Send {Space}
   }
-	if statusbyte between 128 and 143 ;MIDI NoteOff
+if statusbyte between 128 and 143 ; MIDI NoteOff
   {
-		stb := "NoteOff"
+    stb := "NoteOff"
   }
-	if statusbyte between 192 and 208 ;MIDI Program Change
+if statusbyte between 192 and 208 ; MIDI Program Change
   {
-		stb := "PC"
+    stb := "PC"
   }
-	if statusbyte between 224 and 254 ;MIDI Pitch Bend
+if statusbyte between 224 and 254 ; MIDI Pitch Bend
   {
     stb := "PitchB"
   }
-	MidiInDisplay(stb, statusbyte, chan, data1, data2) ; midi display function called when message received
+
+MidiInDisplay(stb, statusbyte, chan, data1, data2) ; midi display function called when message received
 } ; end of MidiMsgDetect funciton
 return
 
