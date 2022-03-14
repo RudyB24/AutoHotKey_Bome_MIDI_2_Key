@@ -4,7 +4,7 @@
 ; 1: https://www.youtube.com/watch?v=Y3gow1TlL78
 ; 2: https://www.youtube.com/watch?v=D-Wvf4HNBnU
 ; 3: https://www.youtube.com/watch?v=h0IZiYEkvLg
-; The scripts: https://github.com/RudyB24/AutoHotKey_2_MIDI/
+; The scripts: https://github.com/RudyB24/AutoHotKey_Bome_MIDI_2_Key
 ; MIDI events received from the Behringer X Touch One are transferred into
 ; keyboard shortcuts for DaVinci Resolve (or any other app you'd wish to use)
 ; Based on https://github.com/genmce/AHK_Midi2Keypress ... author unknown.
