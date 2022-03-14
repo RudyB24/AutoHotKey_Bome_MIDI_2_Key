@@ -94,7 +94,7 @@ if statusbyte between 144 and 159  ; MIDI NoteOn
       Send ^-
     if (data1=98 and data2=127) ; Left = Cursor to previous edit
       Send {Up}
-    if (data1=99 and data2=127) ; Down = Cursor to next edit
+    if (data1=99 and data2=127) ; Right = Cursor to next edit
       Send {Down}
     if (data1=91 and data2=127) ; << = Fast rewind
       Send +j
