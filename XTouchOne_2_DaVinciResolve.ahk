@@ -72,7 +72,7 @@ if statusbyte between 144 and 159  ; MIDI NoteOn
       Send +{F11}
     if (data1=58 and data2=127) ; F5 = Overwrite
       Send {F10}
-    if (data1=53 and data2=127) ; F6 = Ripple Overwrite
+    if (data1=59 and data2=127) ; F6 = Ripple Overwrite
       Send +{F10}
     if (data1=84 and data2=127) ; Marker = place marker on timeline
       Send m
