@@ -13,16 +13,16 @@
 #Persistent
 #SingleInstance, force
 SetTitleMatchMode, 2
-SendMode Input              	; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir% 	; Ensures a consistent starting directory.
+SendMode Input              ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 ; =============== 
 version = XTouchOne2DaVinciResolve
 ; =============== 
-readini()					            ; load midi port from .ini file 
-gosub, MidiPortRefresh        ; used to refresh the input and output port lists - see label below 
-port_test(numports)   		    ; test the ports - check for valid ports?
-gosub, midiin_go              ; opens the midi input port listening routine
-gosub, midiMon           	    ; see below - a midi monitor gui - for learning mostly - comment this line eventually.
+readini()              ; load midi port from .ini file 
+gosub, MidiPortRefresh ; used to refresh the input and output port lists - see label below 
+port_test(numports)    ; test the ports - check for valid ports?
+gosub, midiin_go       ; opens the midi input port listening routine
+gosub, midiMon         ; see below - a midi monitor gui - for learning mostly - comment this line eventually.
 
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ; MidiMsgDetect is called each time a MIDI message is received.
