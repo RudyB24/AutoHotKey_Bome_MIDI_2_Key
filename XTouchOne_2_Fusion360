@@ -10,13 +10,16 @@
 ; Based on https://github.com/genmce/AHK_Midi2Keypress ... author unknown.
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+sketch := 0
+step   := 0
+
 #Persistent
 #SingleInstance, force
 SetTitleMatchMode, 2
 SendMode Input              ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 ; =============== 
-version = XTouchOne2DaVinciResolve
+version = XTouchOne_2_Fusion360
 ; =============== 
 readini()              ; load midi port from .ini file 
 gosub, MidiPortRefresh ; used to refresh the input and output port lists - see label below 
@@ -32,7 +35,7 @@ gosub, midiMon         ; see below - a midi monitor gui - for learning mostly - 
 
 MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this function each time a midi message is received. Then the midi message is broken up into parts for manipulation.  See http://www.midi.org/techspecs/midimessages.php (decimal values).
 {
-	global statusbyte, chan, note, cc, data1, data2, stb ;Make these vars global to be used in other functions
+	global statusbyte, chan, note, cc, data1, data2, stb, step, sketch ;Make these vars global to be used in other functions
 	statusbyte :=  midiMsg & 0xFF          ; Extract statusbyte = what type of MIDI message and what channel
 	chan       := (statusbyte & 0x0f) + 1  ; The MIDI channel
 	data1      := (midiMsg >> 8) & 0xFF    ; data1 is Note # or CC #
@@ -42,19 +45,17 @@ MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this fun
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 ; ADD YOUR OWN INSTRUCTIONS HERE USING: if (data1=... [and/or data2=...) Send ...
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-sketch := 0
-step   := 0
 
 if statusbyte between 176 and 191  ; MIDI CC
   {
     stb := "CC" ;The stb variable is used for the MIDI Monitor display
-    if (data1=60 and data2=65)  ; Jog wheel left
-       Send {Space}
-    if (data1=60 and data2=1) ; Jog wheel right
-       Send {Space}
+    if (data1=60 and data2=65) ; Jog wheel left
+       Send +{Tab}
+    if (data1=60 and data2=1)  ; Jog wheel right
+       Send {Tab}
     if (data1=16 and data2=65) ; Pan knob left
        Send {Space}
-    if (data1=16 and data2=1) ; Pan knob right
+    if (data1=16 and data2=1)  ; Pan knob right
        Send {Space}
   }
 if statusbyte between 144 and 159  ; MIDI NoteOn
@@ -68,24 +69,17 @@ if statusbyte between 144 and 159  ; MIDI NoteOn
     {
       sketch := !sketch
       if(sketch)
-        Send +^s ; Sketch on (RB shortcut)
+        Send +^c ; Create sketch (RB shortcut)
       else
-        Send x   ; Sketch off
+        Send x   ; Exit sketch mode
     }
     if (data1=55 and data2=127) ; F2
     {
-      if(step = 0) {
+      step := !step
+      if(step)
         Send r       ; Rectangle
-        step = 1
-      }
-      else if(step = 1) {
-        Send {Tab}   ; Dimension
-        step = 2
-      }
-      else if(step = 2) {
-        Send {Enter} ; End rectangle
-        step = 0
-      }
+      else
+        Send {Enter} ; End Rectangle
     }
     if (data1=56 and data2=127) ; F3
     {
@@ -93,34 +87,34 @@ if statusbyte between 144 and 159  ; MIDI NoteOn
       if(step)
         Send c       ; Circle
       else
-        Send {Enter} ; End circle
+        Send {Enter} ; End Circle
     }
     if (data1=57 and data2=127) ; F4
-      Send l ; Line
+      Send l   ; Line
     if (data1=58 and data2=127) ; F5
       Send ^+l ; Spline (RB shortcut)
-    if (data1=53 and data2=127) ; F6
-      Send t ; Trim
+    if (data1=59 and data2=127) ; F6
+      Send t   ; Trim
     if (data1=84 and data2=127) ; Marker
     {
       step := !step
       if(step)
         Send e       ; Extrude
       else
-        Send {Enter} ; End extrude
+        Send {Enter} ; End Extrude
     }
     if (data1=85 and data2=127) ; Nudge
-      Send {Space}
+      Send ^+r ; Revolve (RB shortcut)
     if (data1=86 and data2=127) ; Cycle
-      Send {Space}
+      Send ^+s ; Sweep
     if (data1=87 and data2=127) ; Drop
-       Send {Space}
+       Send ^+l ; Loft (RB shortcut)
     if (data1=88 and data2=127) ; Replace
-      Send {Space}
+      Send ^+i ; Rib (RB shortcut)
     if (data1=89 and data2=127) ; Click
-      Send ^z : Undo
+      Send ^+w ; Web (RB shortcut)
     if (data1=90 and data2=127) ; Solo
-      Send ^y : Redo
+      Send h ; Hole
     if (data1=96 and data2=127) ; Up
        Send {Space}
     if (data1=97 and data2=127) ; Down
@@ -130,13 +124,15 @@ if statusbyte between 144 and 159  ; MIDI NoteOn
     if (data1=99 and data2=127) ; Right
       Send {Space}
     if (data1=91 and data2=127) ; <<
-       Send {Space}
+       Send ^z ; Undo
     if (data1=92 and data2=127) ; >>
-       Send {Space}
+       Send ^y ; Redo
     if (data1=93 and data2=127) ; Stop
-       Send {Space}
+       Send h ; Hole
     if (data1=94 and data2=127) ; Play
-       Send {Space}
+       Send m ; Move
+    if (data1=95 and data2=127) ; Record
+       Send a ; Appearence
     if (data1=101 and data2=127) ; Scrub
       Send {Esc} ; Escape
     if (data1=100 and data2=127) ; Zoom
