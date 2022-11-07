@@ -44,7 +44,9 @@ MidiMsgDetect(hInput, midiMsg, wMsg) ; !!!! Midi input section in calls this fun
 ; ADD YOUR OWN INSTRUCTIONS HERE USING: if (data1=... [and/or data2=...) Send ...
 ;@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-if WinExist("Video Pro X")
+if not WinExist("Video Pro X")
+	return
+else
 {
 	WinActivate
 }
