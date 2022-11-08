@@ -9,7 +9,7 @@ This way any MIDI device with pushbuttons, knobs and sliders can be used as a ha
  
 Included are
  - AHK script with shortcuts to operate the DaVinci Resolve video editor via the Behringer X Touch One.
- - A Bome MIDI Translator configuration file in case you prefer to use the Bome app.
+ - A Bome MIDI Translator configuration file in case you prefer to use the [Bome app](https://www.bome.com/products/miditranslator).
  - AHK script to control Magix Video Pro X, added by Erich Grubmüller.
  
 Keystrokes can be changed to your liking via the 'if' statements from line 40 onwards.
