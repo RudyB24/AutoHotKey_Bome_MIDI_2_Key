@@ -22,7 +22,7 @@ YouTube videos with further explanation:
 </ol>
  
 I like to mention I didn't program the MIDI tranlation part of the AutoHotKey script.
-I found it [here]{https://github.com/genmce/AHK_Midi2Keypress}. Author unknown.
+I found it [here](https://github.com/genmce/AHK_Midi2Keypress). Author unknown.
 What I added are the X Touch One > DaVinci shortcuts.
  
 Have fun.
